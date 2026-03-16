@@ -1,0 +1,120 @@
+<template>
+    <div class="media__wrapper-header media__wrapper-search slds-p-around_small">
+        <lightning-layout vertical-align="center" class="slds-wrap media__wrapper-input-search">
+            <lightning-layout-item
+                padding="around-small"
+                size="10"
+                flexibility="auto"
+                class="searchLayout cosmetic__keyword"
+            >
+            <span>
+                <lightning-input
+                        type="text"
+                        placeholder="Search by Name, Subject,..."
+                        class="cosmetic__keyword--input"
+                        onchange={handleChange}
+                        value={keyword}
+                ></lightning-input>
+            </span>
+            <lightning-icon icon-name="utility:search" class="cosmetic__icon--search"></lightning-icon>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small" size="2">
+                <lightning-button
+                    label="Search"
+                    variant="brand"
+                    class="slds-button search__media"
+                    onclick={handleSearch}
+                >
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+
+    <lightning-layout>
+        <lightning-layout-item size="12" flexibility="auto" padding="around-small">
+            <lightning-card title={totalRecord}>
+                <div class="slds-scrollable_x" >
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer ">
+                        <thead>
+                            <tr class="slds-text-title_caps slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="商品名">Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="商品名">Subject</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="製造会社名">Type</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="表示名称">Category</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={currentData} for:item="feedback">
+                                <tr key={feedback.Name}>
+                                    <td data-label="Name">
+                                        <p class="slds-line-clamp" style="--lwc-lineClamp: 10">
+                                            <a href={feedback.url} target="_self">
+                                                {feedback.Name}
+                                            </a>
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <p class="slds-line-clamp" style="--lwc-lineClamp: 10">
+                                            {feedback.Subject__c}
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <p class="slds-line-clamp" style="--lwc-lineClamp: 10">
+                                            {feedback.Type__c}
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <p class="slds-line-clamp" style="--lwc-lineClamp: 10">
+                                            {feedback.Category__c}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="slds-clearfix" id="pagination_hide">
+                    <div class="slds-page-header" role="banner">
+                        <lightning-layout vertical-align="center">
+                            <lightning-layout-item>
+                                <p>Page {!v.pageNumber}／{!v.pageTotal} | {! ((v.pageNumber-1)*(v.pageSize)+1)+'-'+((v.pageNumber-1)*v.pageSize+v.dataSize)}</p>
+                            </lightning-layout-item>
+                            <lightning-layout-item alignment-bump="left">
+                                <lightning-button
+                                                label="prev"
+                                                icon-name="utility:chevronleft"
+                                                icon-position="left"
+                                                disabled={disabledPrev}
+                                                onclick={handlePrevMaster}
+                                                >
+                                </lightning-button>
+                                <lightning-button
+                                                label="next"
+                                                icon-name="utility:chevronright"
+                                                icon-position="right"
+                                                disabled={disabledNext}
+                                                onclick={handleNextMaster}
+                                                >
+                                </lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                </div>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+    
+</template>
