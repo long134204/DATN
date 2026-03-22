@@ -19,11 +19,11 @@
             <lightning-icon icon-name="utility:search" class="cosmetic__icon--search"></lightning-icon>
             </lightning-layout-item>
 
-            <lightning-layout-item padding="around-small" size="2">
+            <lightning-layout-item size="2" class="slds-p-around_small">
                 <lightning-button
                     label="Search"
                     variant="brand"
-                    class="slds-button search__media"
+                    class="search__media"
                     onclick={handleSearch}
                 >
                 </lightning-button>
@@ -32,7 +32,7 @@
     </div>
 
     <lightning-layout>
-        <lightning-layout-item size="12" flexibility="auto" padding="around-small">
+        <lightning-layout-item size="12" flexibility="auto">
             <lightning-card title={totalRecord}>
                 <div class="slds-scrollable_x" >
                     <table class="slds-table slds-table_bordered slds-table_cell-buffer ">
@@ -89,9 +89,16 @@
                 <div class="slds-clearfix" id="pagination_hide">
                     <div class="slds-page-header" role="banner">
                         <lightning-layout vertical-align="center">
-                            <lightning-layout-item>
-                                <p>Page {!v.pageNumber}／{!v.pageTotal} | {! ((v.pageNumber-1)*(v.pageSize)+1)+'-'+((v.pageNumber-1)*v.pageSize+v.dataSize)}</p>
-                            </lightning-layout-item>
+                            <template if:true={isFirstRender}>
+                                <lightning-layout-item>
+                                    <p>Page 0／0</p>
+                                </lightning-layout-item>
+                            </template>
+                            <template if:false={isFirstRender}>
+                                <lightning-layout-item>
+                                    <p>Page {currentPage}／{totalPage}</p>
+                                </lightning-layout-item>
+                            </template>
                             <lightning-layout-item alignment-bump="left">
                                 <lightning-button
                                                 label="prev"
@@ -116,5 +123,4 @@
             </lightning-card>
         </lightning-layout-item>
     </lightning-layout>
-    
 </template>

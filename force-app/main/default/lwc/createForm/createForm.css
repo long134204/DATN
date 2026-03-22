@@ -1,0 +1,74 @@
+.page-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+/* Header Section - Căn giữa toàn bộ */
+.header-section {
+    text-align: center;
+}
+
+.main-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a2b56; /* Màu xanh đậm đúng ý bạn */
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.sub-title {
+    font-size: 1rem;
+    color: #444;
+    font-style: italic; /* Tạo độ mềm mại cho sub-header */
+}
+
+.custom-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.custom-form-row {
+    margin-bottom: 1.25rem;
+    align-items: flex-start; /* Giúp label Rich Text nằm ở trên đầu thay vì giữa */
+}
+
+/* Định dạng Label để căn lề phải, sát đường kẻ đỏ bạn muốn */
+.custom-label {
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+    text-align: right;
+    font-weight: 600;
+    color: #3e3e3c;
+    display: block;
+}
+
+/* Fix chiều cao cho Rich Text để không bị lùn hơn các ô khác */
+lightning-input-field[data-field="Description__c"] {
+    min-height: 150px;
+}
+
+/* Màu sắc nút bấm */
+.brand-button {
+    --slds-c-button-brand-color-background: #1a2b56;
+    --slds-c-button-brand-color-border: #1a2b56;
+}
+
+/* Thêm hiệu ứng focus cho ô nhập liệu cho hiện đại */
+lightning-input-field {
+    --slds-c-input-radius-border: 4px;
+}
+
+/* Tăng khoảng cách phía trên để đẩy nút xuống */
+.button-group-container {
+    margin-top: 3rem; /* Bạn có thể tăng số này lên 4rem hoặc 5rem để nút xuống thấp hơn nữa */
+    text-align: center;
+}
+
+/* Nếu bạn muốn nút đè lên mép dưới của Card (hiệu ứng hiện đại) */
+.brand-button {
+    --slds-c-button-brand-color-background: #1a2b56;
+    --slds-c-button-brand-color-border: #1a2b56;
+    
+    /* Optional: Nếu muốn nút nằm lơ lửng sát mép dưới */
+    transform: translateY(20px); 
+}

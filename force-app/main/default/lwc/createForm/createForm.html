@@ -1,0 +1,62 @@
+<template>
+    <div class="page-container">
+        <div class="header-section slds-m-bottom_large">
+            <h1 class="main-title">Complete this form to give us your experience.</h1>
+            <p class="sub-title">We value your feedback to improve our services.</p>
+        </div>
+
+        <lightning-card class="custom-card">
+            <lightning-record-edit-form object-api-name={objectApiName} onsuccess={handleSuccess} onerror={handleError}>
+                <div class="slds-p-around_large">
+                    
+                    <div class="custom-form-row slds-grid slds-wrap">
+                        <label class="custom-label slds-col slds-size_1-of-1 slds-medium-size_2-of-12">
+                            <abbr class="slds-required" title="required">*</abbr>Subject
+                        </label>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_10-of-12">
+                            <lightning-input-field field-name="Subject__c" variant="label-hidden"></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <div class="custom-form-row slds-grid slds-wrap">
+                        <label class="custom-label slds-col slds-size_1-of-1 slds-medium-size_2-of-12">Description</label>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_10-of-12">
+                            <lightning-input-field field-name="Description__c" variant="label-hidden"></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <div class="custom-form-row slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                            <div class="slds-grid">
+                                <label class="custom-label slds-col slds-size_4-of-12">
+                                    <abbr class="slds-required" title="required">*</abbr>Type
+                                </label>
+                                <div class="slds-col slds-size_8-of-12">
+                                    <lightning-input-field field-name="Type__c" variant="label-hidden"></lightning-input-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-p-left_medium">
+                            <div class="slds-grid">
+                                <label class="custom-label slds-col slds-size_4-of-12">Category</label>
+                                <div class="slds-col slds-size_8-of-12">
+                                    <lightning-input-field field-name="Category__c" variant="label-hidden"></lightning-input-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group-container">
+                        <lightning-button
+                            variant="brand"
+                            type="submit"
+                            label="Submit"
+                            class="brand-button">
+                        </lightning-button>
+                    </div>
+
+                </div>
+            </lightning-record-edit-form>
+        </lightning-card>
+    </div>
+</template>

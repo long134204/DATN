@@ -19,9 +19,10 @@ export default class FeedbackListView extends LightningElement {
     currentPage = 1;
     pageNumber = 10;
     totalPage;
+    isFirstRender= true;
 
     getFeedbackUrl(id, name){
-        return '/s/feedback/' + id +'/' +name;
+        return 'https://playful-otter-gvedat-dev-ed.trailblaze.my.site.com/main/s/feedback/' + id +'/' + name.replace('-', '');
     }
 
     get totalRecord() {
@@ -32,7 +33,8 @@ export default class FeedbackListView extends LightningElement {
         if(this.keyword != '') {
             getFeedbacks({ keyword: this.keyword })
             .then(result => {
-                if (result.length >0) {
+                if (result.length > 0) {
+                    this.isFirstRender = false;
                     this.feedbacks = result.map((item) =>{
                         return {
                             ...item,
