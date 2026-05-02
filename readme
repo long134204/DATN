@@ -1,0 +1,152 @@
+#  HỆ THỐNG QUẢN LÝ PHẢN HỒI KHÁCH HÀNG (SALESFORCE)
+
+##  Giới thiệu
+Dự án này xây dựng một hệ thống quản lý phản hồi khách hàng trên nền tảng Salesforce.  
+Hệ thống giúp doanh nghiệp tiếp nhận, quản lý và xử lý các phản hồi/khiếu nại của khách hàng một cách hiệu quả thông qua tự động hóa và tích hợp hệ thống.
+
+Mục tiêu chính là nâng cao chất lượng dịch vụ khách hàng bằng cách số hóa và tối ưu quy trình xử lý phản hồi.
+
+---
+
+##  Mục tiêu
+- Thu thập phản hồi khách hàng từ nhiều nguồn (Web, Email)
+- Lưu trữ và quản lý dữ liệu tập trung
+- Tự động hóa quy trình xử lý bằng Flow
+- Tạo báo cáo PDF từ dữ liệu phản hồi
+- Tích hợp Google Drive để lưu trữ file
+
+---
+
+##  Kiến trúc hệ thống
+Người dùng → Web / Email → Salesforce → Flow → Apex → PDF → Google Drive
+
+---
+
+##  Chức năng chính
+
+### 1. Tiếp nhận phản hồi
+- Gửi phản hồi qua Website (Web-to-Feedback)
+- Gửi qua Email (Email-to-Feedback)
+- Tự động tạo bản ghi trong hệ thống
+
+### 2. Quản lý phản hồi
+- Lưu trữ phản hồi dưới dạng record
+- Theo dõi trạng thái:
+  - New (Mới)
+  - In Progress (Đang xử lý)
+  - Resolved (Đã xử lý)
+- Phân công nhân viên xử lý
+
+### 3. Tự động hóa (Flow Builder)
+- Tự động phân công nhân viên
+- Gửi email thông báo
+- Cập nhật trạng thái tự động
+- Scheduled Flow xử lý dữ liệu theo ngày
+
+### 4. Tạo file PDF
+- Sử dụng Visualforce Page
+- Nội dung bao gồm:
+  - Thông tin công ty
+  - Thông tin khách hàng
+  - Nội dung phản hồi
+- Lưu vào Salesforce Files
+
+### 5. Tích hợp Google Drive
+- Upload file PDF lên Google Drive
+- Sử dụng Apex Callout
+- Cấu hình bằng Named Credential
+
+---
+
+## Công nghệ sử dụng
+
+- Salesforce Platform
+- Apex (xử lý backend)
+- Flow Builder (tự động hóa)
+- Visualforce (tạo PDF)
+- Lightning Web Components (giao diện nếu có)
+- Google Drive API (tích hợp)
+
+---
+
+---
+
+## Quy trình hoạt động
+
+1. Khách hàng gửi phản hồi qua Web hoặc Email  
+2. Hệ thống tạo bản ghi Feedback  
+3. Flow tự động phân công nhân viên  
+4. Nhân viên xử lý và cập nhật trạng thái  
+5. Hệ thống tạo file PDF  
+6. File được lưu trong Salesforce  
+7. File được upload lên Google Drive  
+
+---
+
+## Hướng dẫn cài đặt
+
+### 1. Cấu hình Salesforce
+- Deploy source code lên Salesforce Org  
+- Tạo object Feedback  
+- Tạo các field:
+  - Status  
+  - Description  
+  - Assigned Staff  
+
+---
+
+### 2. Cấu hình Flow
+- Tạo Record-Triggered Flow  
+- Tạo Scheduled Flow (chạy hàng ngày)  
+
+---
+
+### 3. Cấu hình Google Drive
+- Tạo Google Cloud Project  
+- Enable Google Drive API  
+- Cấu hình OAuth 2.0  
+- Tạo Named Credential trong Salesforce  
+
+---
+
+### 4. Deploy Apex
+- GeneratePDFAction.cls  
+- UploadToDriveAction.cls  
+
+---
+
+##  Thành phần chính
+
+- **Flow Builder** → Tự động hóa quy trình  
+- **Apex** → Xử lý logic & tích hợp  
+- **Visualforce** → Tạo file PDF  
+- **Named Credential** → Kết nối API an toàn  
+
+---
+
+## Kết quả đạt được
+
+- Giảm thao tác thủ công  
+- Tăng tốc độ xử lý phản hồi  
+- Chuẩn hóa quy trình  
+- Quản lý dữ liệu tập trung  
+
+---
+
+##  Hướng phát triển
+
+- Xây dựng Dashboard báo cáo  
+- Ứng dụng AI phân loại phản hồi  
+- Tích hợp Mobile App  
+- Hỗ trợ đa ngôn ngữ  
+
+---
+
+##  Tác giả
+- Nguyen Huynh Bao Long  
+- Đồ án tốt nghiệp (DATN)  
+
+---
+
+##  Bản quyền
+Dự án phục vụ mục đích học tập và nghiên cứu.
