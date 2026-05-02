@@ -1,0 +1,451 @@
+<apex:page standardController="Feedback__c"
+           renderAs="pdf"
+           applyBodyTag="false"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false">
+
+<head>
+    <!-- 🔥 GIỮ NGUYÊN TOÀN BỘ CSS CỦA BẠN -->
+    <style type="text/css">
+        @page {
+            size: 8.27in 11.69in;
+            margin: 0.3in;
+            margin-top: 80px;
+            margin-bottom: 50px;	
+            @bottom-center {
+                font-size: 13px;
+                content: counter(page) " / " counter(pages);
+            }
+            @top-left {
+                content: element(header);
+            }
+        }
+
+        div.header {
+            padding: 0.1in;
+            margin-top: 0.3in;
+            position: running(header);
+        }
+
+        body { font-size: 13px; }
+        * {
+            font-family: Arial Unicode MS; 
+        }
+
+        .header__no {
+            float: left;
+        }
+
+        .header__date {
+            float: right;
+        }
+
+        .title>h2 {
+            text-align: center;
+            margin-right: 200px;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: black;
+
+        }
+
+        .company {
+            position: relative;
+        }
+
+        .company__desc>p {
+            margin-bottom: 0;
+        }
+
+        .company__title {
+            position: absolute;
+            right: 0;
+            top: -50%;
+            z-index: 1;
+            background-color: #fff;
+            padding-left: 5px;
+        }
+
+        .company__department {
+            margin-top: 20px
+        }
+
+        .company__department p {
+            margin: 0;
+        }
+
+        .description {
+            margin-top: 20px;
+        }
+
+        .description p {
+            margin: 0;
+        }
+
+        .description__left {
+            width: 65%;
+            float: left;
+        }
+
+        .description__right {
+            width: 35%;
+            float: right;
+            position: relative;
+        }
+
+        .content-table {
+            padding-top: 150px;
+        }
+
+        table {
+
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        td,
+        th {
+            text-align: left;
+            padding: 8px;
+        }
+
+        .destination {
+            padding-top: 20px;
+        }
+
+        .destination p {
+            margin: 0;
+        }
+
+        .destination__content .line {
+            margin-top: -3px;
+        }
+
+        .destination__title {
+            float: left;
+            width: 30%;
+        }
+
+        .destination__content {
+            float: right;
+            width: 70%;
+            padding-right: 110px;
+            margin-top: -21px;
+        }
+
+        .footer {
+            border: 1px solid black;
+            <!-- page-break-inside: avoid; --> <!-- Update 25/11/2024-->
+        }
+
+        .footer__left {
+            float: none;
+            width: 10%;
+        }
+
+        .footer__right {
+            float: none;
+            width: 90%;
+        }
+
+        .square__item {
+            width: 59px;
+            height: 59px;
+            border: 1px solid black;
+            float: right;
+            overflow: hidden;
+            text-align: center;
+
+        }
+
+        .w-90 {
+            width: 90%;
+        }
+        
+        <!-- Update 22/11/2024 -->
+        .w-10 {
+            width: 10px;
+        }
+
+        .w-15 {
+            width: 15px;
+        }
+
+        .w-60 {
+            width: 60px;
+        }
+
+        .w-200 {
+            width: 200px;
+        }
+
+        .w-30 {
+            width: 30px;
+        }
+
+        .description__note {
+            margin: 20px 0;
+        }
+
+        .description__payment {
+            margin-top: 20px;
+        }
+
+        .description__estimate {
+            margin-top: 20px;
+        }
+
+        .content-table {
+            margin-top: 60px;
+        }
+
+        .description__right>* {
+            margin: 5px 0;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: center;
+        }
+
+        .clear-both {
+            clear: both;
+        }
+
+        .header__left {
+            float: left;
+        }
+
+        .header__left p:first-child {
+            margin: 0;
+        }
+
+        .header__left p:nth-child(2) {
+            margin-bottom: 0;
+        }
+
+        .header__right {
+            float: right;
+        }
+
+        .title-company h1 {
+            float: left;
+            margin: 0;
+        }
+
+        .title-company p {
+            float: right;
+            margin: 0;
+        }
+
+        .banner__left {
+            float: left;
+            width: 33%;
+            padding-right: 2%;
+        }
+
+        .banner__left p:first-child {
+            margin-bottom: 0;
+        }
+
+        .banner__left p:nth-child(3) {
+            margin-bottom: 0;
+        }
+
+        .banner__center {
+            float: left;
+            width: 35%;
+        }
+
+        .banner__center p:first-child {
+            margin-bottom: 0;
+        }
+
+        .banner__right {
+            float: left;
+            width: 30%;
+        }
+
+        .tableStyle,
+        .tableStyle th,
+        .tableStyle td {
+            border: 1px solid #E4E8EC;
+            text-align: center;
+            padding: 5px;
+            margin-top: 50px;
+        }
+
+
+        .table-quotation,
+        .table-quotation th,
+        .table-quotation td {
+            border: 1px solid #E4E8EC;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .child__table {
+            border-collapse: collapse;
+        }
+
+
+        thead {
+            background-color: #DEE0E3;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+
+        .description__right--image {
+            position: absolute;
+            height: 100px;
+            object-fit: cover;
+            right: 0;
+        }
+
+        @media print {
+
+            .tableStyle tr,
+            .table-quotation {
+                page-break-inside: avoid;
+            }
+
+            .table-quotation thead {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header__no">
+            <p>Feedback ID: {!Feedback__c.Name}</p>
+        </div>
+        <div class="header__right">
+            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                <apex:param value="{!Feedback__c.CreatedDate}" />
+            </apex:outputText>
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <h2 style="text-align: center; font-size: 26px;">
+        FEEDBACK REPORT
+    </h2>
+
+    <div class="line"></div>
+
+    <!-- INFO -->
+    <div class="description">
+
+        <div class="description__left">
+
+            <div class="company">
+                <div class="company__desc">
+                    <p style="font-size: 15px;">
+                        Customer: {!Feedback__c.Contact__r.Name}
+                    </p>
+                </div>
+                <div class="line" style="width: 90%"></div>
+            </div>
+
+            <div class="description__note">
+                <p>Feedback details are as follows:</p>
+            </div>
+
+            <div>
+                <span>Status:</span>
+                <span>&nbsp;&nbsp;{!Feedback__c.Status__c}</span>
+            </div>
+            <div class="line w-90"></div>
+
+            <div>
+                <span>Priority:</span>
+                <span>&nbsp;&nbsp;{!Feedback__c.Priority__c}</span>
+            </div>
+            <div class="line w-90"></div>
+
+            <div>
+                <span>Resolved Date:</span>
+                <span>&nbsp;&nbsp;
+                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                        <apex:param value="{!Feedback__c.Resolved_Date__c}" />
+                    </apex:outputText>
+                </span>
+            </div>
+            <div class="line w-90"></div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="description__right">
+
+            <h2>BTECH COMPANY</h2>
+
+            <p>Support Department</p>
+
+            <!-- <p>Handled by: {!$User.Name}</p> -->
+
+            <p>Email: support@company.com</p>
+
+            <p>Phone: 0123 456 789</p>
+
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-table">
+
+        <table class="tableStyle">
+
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td style="text-align: left;">
+                        <apex:outputText value="{!Feedback__c.Description__c}" escape="false"/>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <div class="footer__left">
+            <p>Note</p>
+        </div>
+
+        <div class="footer__right">
+            <p style="white-space: pre-wrap;">
+                Thank you for your feedback. We appreciate your contribution to improving our service.
+            </p>
+        </div>
+
+        <div class="clear-both"></div>
+    </div>
+
+</body>
+</apex:page>

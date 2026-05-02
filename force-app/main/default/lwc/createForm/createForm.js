@@ -6,12 +6,20 @@ export default class CreateForm extends LightningElement {
     objectApiName = FEEDBACK;
 
     handleSuccess(event) {
-        console.log(event);
+        this.toastMessage('Success', 'Record created successfully', 'success');
+
         
+        window.location.reload();
+
     }
     handleError(error) {
-        console.log(error);
-        
+        let message = 'Something went wrong';
+        if (error?.detail?.message) {
+            message = error.detail.message;
+        }
+
+        this.toastMessage('Error', message, 'error');
+
     }
 
     toastMessage(title, message, variant) {

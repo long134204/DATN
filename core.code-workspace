@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "d:/Khóa Luận Tốt Nghiệp 2026/DATN"
+    }
+  ],
+  "settings": {
+    "eslint.workingDirectories": [
+      "d:/Khóa Luận Tốt Nghiệp 2026/DATN"
+    ],
+    "eslint.validate": [
+      "javascript",
+      "typescript"
+    ],
+    "eslint.options": {
+      "overrideConfigFile": "d:\\Khóa Luận Tốt Nghiệp 2026\\DATN\\.eslintrc.json"
+    }
+  }
+}
